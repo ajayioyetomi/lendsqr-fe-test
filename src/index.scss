@@ -1,0 +1,15 @@
+@use './css/variables.scss' as variables;
+:root{
+  font-size: 20px;
+}
+
+*{
+  box-sizing: border-box;
+  font-family: variables.$normalFont;
+  text-decoration: none;
+}
+
+body{
+  margin:0;
+  padding:0;
+}
