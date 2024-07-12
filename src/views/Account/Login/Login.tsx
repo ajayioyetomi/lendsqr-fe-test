@@ -16,7 +16,7 @@ const loginSchema = Yup.object().shape({
 })
 
 const validateEmail = (value:string) =>{
-  let error;
+  let error = '';
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
     error = 'Invalid email address';
   }
@@ -49,8 +49,8 @@ const Login = () => {
               }}
             
             >
-              {({validateEmail,errors}:any)=>(
-                <Form >
+              {({errors}:any)=>{
+                return (<Form >
                 <label>
                   <Field type="email" name="Email" placeholder="Email" validate={validateEmail} />
                 </label>
@@ -62,7 +62,7 @@ const Login = () => {
                 <NavLink to="/forgot-password">Forgot Fassword?</NavLink>
                 <button>LOG IN </button>
               </Form>
-              )}
+              )}}
               
             </Formik>
           </div>

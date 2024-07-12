@@ -4,4 +4,29 @@
     align-items: center;
 }
 
+$breakpoints:(
+    'xs':'min-width:0px',
+    'sm':'min-width:361px',
+    'md':'min-width:768px',
+    'lg':'min-width:992px',
+    'xl':'min-width:1200px',
+    'xxl':'min-width:1400px',
+
+);
+
+@mixin breakpoint($screen-width){
+    $my-map:(map-get($breakpoints,$screen-width));
+    @if($my-map){
+        @media(#{$my-map}){
+            @content;
+        }
+    }@else{
+        @media(min-width:$screen-width){
+            @content;
+        }
+    }
+}
+
+
+
 
