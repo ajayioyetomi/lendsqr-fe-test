@@ -1,9 +1,10 @@
 import styles from './login.module.scss';
 import {Logo} from '../../../components';
 import brand_image from '../../../assets/brand_image.svg';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { useAuth } from '../../../hooks';
 
 type ValueType = {
   Email:string,
@@ -26,7 +27,9 @@ const validateEmail = (value:string) =>{
 
 const Login = () => {
   const initialValues:ValueType = {Email:'',Password:'' };
-
+  const navigate = useNavigate();
+  const {login} = useAuth();
+  
   return (
     <main className={styles.container}>
         <div>
@@ -45,7 +48,12 @@ const Login = () => {
               initialValues={initialValues}
               validationSchema={loginSchema}
               onSubmit={(values)=>{
-
+                console.log(values,'values')
+                if(values.Email && values.Password){
+                  login('Hello world')
+                  navigate('/dashboard');
+                  
+                }
               }}
             
             >
@@ -60,7 +68,7 @@ const Login = () => {
                 </label>
                 <div>{errors && errors.Password?errors.Password:''}</div>
                 <NavLink to="/forgot-password">Forgot Fassword?</NavLink>
-                <button>LOG IN </button>
+                <button type='submit'>LOG IN </button>
               </Form>
               )}}
               
