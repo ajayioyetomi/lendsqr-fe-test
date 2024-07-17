@@ -1,12 +1,37 @@
-import {useState} from 'react';
+import {useState,useRef,useEffect} from 'react';
 import styles from './profile.module.scss';
 import { MdArrowDropDown as DownArrow} from "react-icons/md";
 import avatar from '../../assets/avatar.png';
+import { FaRegCircleUser as UserIcon } from "react-icons/fa6";
+import { CiLogout as LogoutIcon } from "react-icons/ci";
+import { useAuth } from '../../hooks';
 
 const Profile = () => {
-    const [show,set_show] = useState<boolean>(false)
+    const [show,set_show] = useState<boolean>(false);
+    const parentRef = useRef<HTMLDivElement | null>(null);
+    const childRef = useRef<HTMLUListElement | null>(null);
+    const {logout} = useAuth()
+
+
+    useEffect(()=>{
+        const handleOutsideClick = (e:any)=>{
+            if(parentRef && parentRef.current && childRef && childRef.current){
+                const parentDimensions = parentRef.current.getBoundingClientRect();
+                const childDimensions = childRef.current.getBoundingClientRect();
+                if( e.clientX < childDimensions.left ||
+                    e.clientX > parentDimensions.right ||
+                    e.clientY < parentDimensions.top ||
+                    e.clientY > childDimensions.bottom){
+                        set_show(false);
+                }   
+            }
+        }
+        window.addEventListener('click',handleOutsideClick);
+
+        return ()=> window.removeEventListener('click',handleOutsideClick);
+    },[])
     return (
-        <div className={styles.container}>
+        <div ref={parentRef} className={styles.container}>
             <button onClick={()=>set_show(!show)}>
                 <img src={avatar} alt="profile" />
                 <span>username</span>
@@ -14,8 +39,9 @@ const Profile = () => {
             </button>
             {
                 show?
-                <ul>
-                    <li>Logout</li>
+                <ul ref={childRef}>
+                    <li><UserIcon /> username</li>
+                    <li onClick={()=>logout()}><LogoutIcon /> Logout</li>
                 </ul>
                 :''
             }

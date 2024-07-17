@@ -33,7 +33,6 @@ const Login = () => {
   const {login,isAuthenticated} = useAuth();
 
   useEffect(()=>{
-    console.log(isAuthenticated,'auth')
     if(!isAuthenticated){
       navigate('/login');
       return;
@@ -62,11 +61,9 @@ const Login = () => {
               initialValues={initialValues}
               validationSchema={loginSchema}
               onSubmit={(values)=>{
-                console.log(values,'values')
                 if(values.Email && values.Password){
                   login('Hello world')
                   navigate('/dashboard');
-                  
                 }
               }}
             

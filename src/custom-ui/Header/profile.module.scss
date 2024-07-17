@@ -32,5 +32,30 @@
         top:37px;
         margin:0;
         padding: 0;
+        background-color: variables.$white_color;
+        box-shadow: 3px 0px 20px 0px #0000000A;
+        list-style: none;
+        padding: .4rem 0;
+        width: 150px;
+        display: grid;
+        & > li{
+            font-size: .7rem;
+            text-transform: capitalize;
+            display: flex;
+            align-items: center;
+            gap:.4rem;
+            padding:.3rem .6rem;
+            cursor: pointer;
+            color:variables.$primary_text_2;
+            &:hover{
+                background-color: hsl(from variables.$primary_color_2 h s l /.25);
+                color:variables.$white_color;
+            }
+            @include mixin.breakpoint(md){
+                &:first-child{
+                    display: none;
+                }
+            }
+        }
     }
 }
