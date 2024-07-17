@@ -13,35 +13,36 @@ const searchSchema = Yup.object().shape({
 
 
 const SearchForm = () => {
+  const [show,set_show] = useState<boolean>(false)
   return(
     <Formik
       initialValues={{
         search:''
       }}
       validatationScheme={searchSchema}
-      onSubmit={(values)=>{
+      onSubmit={()=>{
+       
 
       }}
     >
       {()=>{
         return(
-          <>
-            <div className={styles.container}>
-              <span><SearchIcon /></span>
-              <Form className={styles.formWrapper}>
-                <Field name="search" placeholder="search for anything" />
-                <button>
-                  <SearchIcon />
-                </button>     
-              </Form>
-              <aside className={styles.resultWrapper}>
+          <div className={`${styles.container} ${show?styles.container2:''}`}>
+            <button className={show?styles.hideButton:''} onClick={()=>set_show(!show)}><SearchIcon /></button>
+            <Form className={`${styles.formWrapper} ${show?styles.showForm:''}`}>
+              <Field name="search" placeholder="search for anything" />
+              <button>
+                <SearchIcon />
+              </button>    
+              {show?<button onClick={()=>set_show(false)} type="button">
+                  <CancelIcon />
+              </button>:''} 
+            </Form>
+            {show ?
+            <aside className={styles.resultWrapper}>
 
-              </aside>
-            </div>
-            
-          
-          </>
-          
+            </aside>:''}
+          </div>          
         )
       }}
 

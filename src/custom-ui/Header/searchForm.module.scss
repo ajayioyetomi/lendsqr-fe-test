@@ -8,38 +8,89 @@
     @include mixin.breakpoint(md){
         margin-left: 0;
     }
-    & > span{
+    & > button{
         display: flex;
         align-items: center;
+        background-color: transparent;
+        font-size: 1.2rem;
+        outline: none;
+        border:none;
         color:variables.$primary_text_2;
         @include mixin.breakpoint(md){
             display: none;
         }
     }
+}
 
-    & > form{
-        display: none;
-        @include mixin.breakpoint(md){
-            display: flex;
-        }
-        align-items: center;
-        & > button{
-            @include mixin.flexCenter;
-            background-color: variables.$primary_color_2;
-            color:variables.$white_color;
-            outline: none;
-            border:1px solid variables.$primary_color_2;
-            border-radius: 0 .2rem .2rem 0;
-            height: 30px;
-        }
-        & > input{
-            height: 30px;
-            border:1px solid hsl(from variables.$primary_text_1 h s l / .15);
-            border-right: none;
-            border-radius: .2rem 0 0 .2rem;
-            outline: none;
-            width:300px;
-            padding:0 .3rem;
-        }
+.container2{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background-color: variables.$white_color;
+    height: 53px;
+    z-index: 9;
+    justify-content: center;
+    @include mixin.breakpoint(md){
+        position: relative;
+        top:unset;
+        left:unset;
+        width: fit-content;
+        background-color: transparent;
+        z-index: unset;
+        height: fit-content;
     }
 }
+
+.formWrapper{
+    display: none;
+    @include mixin.breakpoint(md){
+        display: flex;
+    }
+    align-items: center;
+    & > button{
+        @include mixin.flexCenter;
+        background-color: variables.$primary_color_2;
+        color:variables.$white_color;
+        outline: none;
+        border:1px solid variables.$primary_color_2;
+        border-radius: 0 .2rem .2rem 0;
+        width:50px;
+        height: 30px;
+    }
+    & > input{
+        height: 30px;
+        border:1px solid hsl(from variables.$primary_text_1 h s l / .15);
+        border-right: none;
+        border-radius: .2rem 0 0 .2rem;
+        outline: none;
+        width:150px;
+        padding:0 .3rem;
+        @include mixin.breakpoint(md){
+            width:300px;
+        }
+    }
+    & > button[type="button"]{
+        display: flex;
+        @include mixin.breakpoint(md){
+            display: none
+        }
+        @include mixin.flexCenter;
+        background-color: transparent;
+        color:variables.$danger;
+        outline: none;
+        border:none;
+        
+        height: 30px;
+    }
+}
+
+.showForm{
+    display: flex;
+}
+
+.hideButton{
+    display: none !important;
+}
+
+
