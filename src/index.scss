@@ -3,6 +3,10 @@
   font-size: 20px;
 }
 
+a,button{
+  cursor:pointer;
+}
+
 *{
   box-sizing: border-box;
   font-family: variables.$normalFont;

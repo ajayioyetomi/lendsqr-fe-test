@@ -1,0 +1,9 @@
+@use '../../css/mixins.scss' as mixin;
+@use '../../css/variables.scss' as variables;
+.container{
+    & > span:first-of-type{
+        display: flex;
+        color: variables.$primary-text-2;
+    }
+
+}

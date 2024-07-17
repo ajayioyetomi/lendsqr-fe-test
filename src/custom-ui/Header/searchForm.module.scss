@@ -1,0 +1,45 @@
+@use '../../css/variables.scss' as variables;
+@use '../../css/mixins.scss' as mixin;
+.container{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-left: auto;
+    @include mixin.breakpoint(md){
+        margin-left: 0;
+    }
+    & > span{
+        display: flex;
+        align-items: center;
+        color:variables.$primary_text_2;
+        @include mixin.breakpoint(md){
+            display: none;
+        }
+    }
+
+    & > form{
+        display: none;
+        @include mixin.breakpoint(md){
+            display: flex;
+        }
+        align-items: center;
+        & > button{
+            @include mixin.flexCenter;
+            background-color: variables.$primary_color_2;
+            color:variables.$white_color;
+            outline: none;
+            border:1px solid variables.$primary_color_2;
+            border-radius: 0 .2rem .2rem 0;
+            height: 30px;
+        }
+        & > input{
+            height: 30px;
+            border:1px solid hsl(from variables.$primary_text_1 h s l / .15);
+            border-right: none;
+            border-radius: .2rem 0 0 .2rem;
+            outline: none;
+            width:300px;
+            padding:0 .3rem;
+        }
+    }
+}

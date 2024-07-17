@@ -1,10 +1,11 @@
 import styles from './login.module.scss';
-import {Logo} from '../../../components';
 import brand_image from '../../../assets/brand_image.svg';
+import logo from '../../../assets/logo.svg';
 import { NavLink,useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useAuth } from '../../../hooks';
+import { useEffect } from 'react';
 
 type ValueType = {
   Email:string,
@@ -14,6 +15,7 @@ type ValueType = {
 const loginSchema = Yup.object().shape({
   Email:Yup.string().required('Email is required'),
   Password:Yup.string().required('Password is required')
+  .min(8,'Too short')
 })
 
 const validateEmail = (value:string) =>{
@@ -28,12 +30,24 @@ const validateEmail = (value:string) =>{
 const Login = () => {
   const initialValues:ValueType = {Email:'',Password:'' };
   const navigate = useNavigate();
-  const {login} = useAuth();
+  const {login,isAuthenticated} = useAuth();
+
+  useEffect(()=>{
+    console.log(isAuthenticated,'auth')
+    if(!isAuthenticated){
+      navigate('/login');
+      return;
+    }
+    login('hello world');
+    navigate('/dashboard');
+  },[])
   
   return (
     <main className={styles.container}>
         <div>
-          <NavLink to="/login" className={styles.logo}><Logo height='30px' /></NavLink>
+          <NavLink to="/login" className={styles.logo}>
+            <img src={logo} height='30px' />
+          </NavLink>
           <div className={styles.image_wrapper}>
             <img src={brand_image} />
           </div>

@@ -1,0 +1,53 @@
+@use '../../css/mixins.scss' as mixin;
+@use '../../css/variables.scss' as variables;
+
+.container{
+    position: sticky;
+    top:0;
+    left:0;
+    padding:.4rem .7rem;
+    z-index: 9;
+    box-shadow: 3px 0px 20px 0px #0000000A;
+    display: flex;
+    gap:30px;
+    @include mixin.breakpoint(md){
+        padding:.7rem 1rem;
+    }
+    & > a{
+        display: flex;
+        align-items: center;
+        & > img{
+
+            &:nth-of-type(2){
+                display: none;
+            }
+            @include mixin.breakpoint(md){
+                &:nth-of-type(2){
+                    display: block;
+                }
+                &:first-of-type{
+                    display: none;
+                }
+            }
+        }        
+    }
+    & > nav{
+        display: flex;
+        flex:1;
+        justify-content: space-between;
+        align-items: center;
+        gap:1.2rem;
+        & > div:nth-of-type(2){
+            display: flex;
+            align-items: center;
+            gap:1.2rem;
+            & > a{
+                font-size: .7rem;
+                text-decoration: underline;      
+                color:variables.$primary-text-2;    
+                font-family: variables.$mediumFont;  
+
+            }
+        }
+    }
+}

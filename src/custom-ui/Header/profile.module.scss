@@ -1,0 +1,36 @@
+@use '../../css/mixins.scss' as mixin;
+@use '../../css/variables.scss' as variables;
+
+.container{
+    display: flex;
+    align-items: center;
+    position: relative;
+    & > button{
+        display: flex;
+        align-items: center;
+        gap:.4rem;
+        background-color: transparent;
+        outline: none;
+        border:none;
+        & > img{
+            width: 35px;
+            height: 35px;
+        }
+        & > span{
+            height: fit-content;
+            font-size: .7rem;
+            text-transform: capitalize;
+            display:none;
+            @include mixin.breakpoint(md){
+                display: inline-block;
+            }
+        }
+    }
+    & > ul{
+        position: absolute;
+        right:0;
+        top:37px;
+        margin:0;
+        padding: 0;
+    }
+}
