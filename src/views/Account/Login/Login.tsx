@@ -5,7 +5,7 @@ import { NavLink,useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useAuth } from '../../../hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type ValueType = {
   Email:string,
@@ -29,6 +29,15 @@ const validateEmail = (value:string) =>{
 
 const Login = () => {
   const initialValues:ValueType = {Email:'',Password:'' };
+  const [type,set_type] = useState('password');
+  const handleType = ()=>{
+      if(type === 'text'){
+        set_type('password');
+        return;
+      }
+      set_type('text');
+
+  }
   const navigate = useNavigate();
   const {login,isAuthenticated} = useAuth();
 
@@ -75,7 +84,8 @@ const Login = () => {
                 </label>
                 <div>{errors && errors.Email?errors.Email:''}</div>
                 <label>
-                  <Field type="password" name="Password" placeholder='Password' />
+                  <Field type={type} name="Password" placeholder='Password' />
+                  <span onClick={handleType}>{type === 'text'?'hide':'show'}</span>
                 </label>
                 <div>{errors && errors.Password?errors.Password:''}</div>
                 <NavLink to="/forgot-password">Forgot Fassword?</NavLink>

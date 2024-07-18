@@ -78,18 +78,29 @@
                 & > label{
                     &:nth-of-type(2){margin-top:1rem}
                     flex:1;
-                    & input{
+                    position: relative;
+                    & > input{
                         width: 100%;
                         color:variables.$primary_text_1;
                         border: 2px solid hsl(from variables.$primary_border_1 h s l /.15);
                         padding:.7rem;
                         border-radius: .2rem;
+                        padding-right: 3rem;
                         &::placeholder{
                             color:hsl(from variables.$primary_border_1 h s l /.5);
                         }
                         &:focus-visible{
                             outline:transparent;
                         }
+                    }
+                    & > span{
+                        position: absolute;
+                        top:.7rem;
+                        right:1rem;
+                        font-family: variables.$boldFont;
+                        font-size: .7rem;
+                        color: variables.$primary_text_3;
+                        cursor: pointer;
                     }
 
                 }

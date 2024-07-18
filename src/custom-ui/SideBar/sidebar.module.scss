@@ -1,10 +1,128 @@
 @use '../../css/variables.scss' as variables;
 @use '../../css/mixins.scss' as mixin;
 
+$height: 30px;
+
 .container{
-    width:200px;
+    width:230px;
     height:100%;
+    overflow:clip auto;
     padding-top:70px;
     background-color: variables.$white_color;
     box-shadow: 0px 5px 20px 0px #0000000A;
+    & > div:first-of-type{
+        padding:.6rem 0 .5rem .6rem;
+        margin-bottom: .5rem;
+        & > button{
+            display: flex;
+            gap:.7rem;
+            align-items: center;
+            border:none;
+            background-color: transparent;
+            color:variables.$primary_text_2;
+            font-size: .7rem;
+            font-family: variables.$mediumFont;
+            
+        }
+        &:focus-visible{
+            outline: transparent;
+        }
+        & > ul{
+            margin:0;
+        }
+    }
+    & > a{
+        display: flex;
+        width:100%;
+        height:$height;
+        padding:0;
+        align-items: center;
+        border:none;
+        background-color: transparent;
+        gap:.7rem;
+        font-size:.7rem;
+        color:variables.$primary_text_1;
+        &::before{
+            content:'';
+            height:100%;
+            width:.15rem;
+            background-color: transparent;
+            display: inline-block;
+        }
+        &:focus-visible{
+            outline:transparent;
+        }
+        &.active,&:hover{
+            color:variables.$primary_text_2 !important;
+            font-family:variables.$boldFont !important;
+            background-color:hsl(from variables.$primary_color_2 h s l /6%);
+            &::before{
+                background-color: variables.$primary_color_2;
+            }
+        }
+    }
+    &::-webkit-scrollbar{
+        width:0;
+    }
+}
+
+.groupContainer{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    width:100%;
+    margin-top:1rem;
+    & > h3{
+        margin:0;
+        padding:.4rem 0 0 1rem;
+        color: variables.$primary_text_1;
+        font-family: variables.$normalFont;
+        font-size:.6rem;
+        text-transform: uppercase;
+    }
+    & > ul{
+        display: grid;
+        list-style: none;
+        margin:0;
+        padding:0;
+        & > li{
+            display: flex;
+            width:100%;
+            & > a{
+                display: flex;
+                width:100%;
+                height:$height;
+                padding:0;
+                align-items: center;
+                border:none;
+                background-color: transparent;
+                gap:.7rem;
+                font-size:.7rem;
+                color:variables.$primary_text_1;
+                & > span{
+                    text-transform:capitalize;
+                }
+                &::before{
+                    content:'';
+                    height:100%;
+                    width:.15rem;
+                    background-color: transparent;
+                    display: inline-block;
+                }
+                &:focus-visible{
+                    outline:transparent;
+                }
+                &.active,&:hover{
+                    color:variables.$primary_text_2 !important;
+                    font-family:variables.$boldFont !important;
+                    background-color:hsl(from variables.$primary_color_2 h s l /6%);
+                    &::before{
+                        background-color: variables.$primary_color_2;
+                    }
+                }
+            }
+        }
+        
+    }
+
 }
