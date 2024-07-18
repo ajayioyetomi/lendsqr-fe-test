@@ -4,7 +4,9 @@ import { MdArrowDropDown as DownArrow} from "react-icons/md";
 import avatar from '../../assets/avatar.png';
 import { FaRegCircleUser as UserIcon } from "react-icons/fa6";
 import { CiLogout as LogoutIcon } from "react-icons/ci";
+import { GrDocumentText as DocIcon } from "react-icons/gr";
 import { useAuth } from '../../hooks';
+import { NavLink } from 'react-router-dom';
 
 const Profile = () => {
     const [show,set_show] = useState<boolean>(false);
@@ -41,6 +43,7 @@ const Profile = () => {
                 show?
                 <ul ref={childRef}>
                     <li><UserIcon /> username</li>
+                    <li><DocIcon /> <NavLink to="/docs">Docs</NavLink>  </li>
                     <li onClick={()=>logout()}><LogoutIcon /> Logout</li>
                 </ul>
                 :''

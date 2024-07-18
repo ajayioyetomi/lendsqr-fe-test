@@ -1,12 +1,12 @@
 @use '../../css/variables.scss' as variables;
 @use '../../css/mixins.scss' as mixin;
-$width: 820px;
+
 .container{
     display: flex;
     align-items: center;
     position: relative;
     margin-left: auto;
-    @include mixin.breakpoint($width){
+    @include mixin.breakpoint(variables.$width){
         margin-left: 0;
     }
     & > button{
@@ -17,7 +17,7 @@ $width: 820px;
         outline: none;
         border:none;
         color:variables.$primary_text_2;
-        @include mixin.breakpoint($width){
+        @include mixin.breakpoint(variables.$width){
             display: none;
         }
     }
@@ -32,7 +32,7 @@ $width: 820px;
     height: 53px;
     z-index: 9;
     justify-content: center;
-    @include mixin.breakpoint($width){
+    @include mixin.breakpoint(variables.$width){
         position: relative;
         top:unset;
         left:unset;
@@ -45,7 +45,7 @@ $width: 820px;
 
 .formWrapper{
     display: none;
-    @include mixin.breakpoint($width){
+    @include mixin.breakpoint(variables.$width){
         display: flex;
     }
     align-items: center;
@@ -67,13 +67,13 @@ $width: 820px;
         outline: none;
         width:150px;
         padding:0 .3rem;
-        @include mixin.breakpoint($width){
+        @include mixin.breakpoint(variables.$width){
             width:300px;
         }
     }
     & > button[type="button"]{
         display: flex;
-        @include mixin.breakpoint($width){
+        @include mixin.breakpoint(variables.$width){
             display: none
         }
         @include mixin.flexCenter;

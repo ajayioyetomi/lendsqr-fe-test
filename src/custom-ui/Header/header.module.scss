@@ -1,12 +1,15 @@
 @use '../../css/mixins.scss' as mixin;
 @use '../../css/variables.scss' as variables;
 
+
 .container{
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top:0;
     left:0;
     padding:.4rem .8rem;
     z-index: 9;
+    background-color: variables.$white_color;
     box-shadow: 3px 0px 20px 0px #0000000A;
     display: flex;
     gap:30px;
@@ -46,7 +49,10 @@
                 text-decoration: underline;      
                 color:variables.$primary-text-2;    
                 font-family: variables.$mediumFont;  
-
+                display: none;
+                @include mixin.breakpoint(variables.$width){
+                    display: inline-block;
+                }
             }
         }
     }

@@ -18,7 +18,7 @@ export const ProtectedContext = createContext<AuthType>({
 
 const ProtectedProvider = ({children}:PropType) => {
   const [token,set_token] = useState<null | string>(null);
-  const time_lapse = useMemo(() =>60*60*30*1000,[]);
+  const time_lapse = useMemo(() =>60*30*1000,[]);
 
   const login = (user_token:string)=>{
     set_token(user_token);

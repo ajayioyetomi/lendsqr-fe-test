@@ -1,0 +1,18 @@
+@use '../../css/variables.scss' as variables;
+@use '../../css/mixins.scss' as mixin;
+
+.container{
+    position: fixed;
+    top: 0;
+    left:0;
+    width:100%;
+    height: 100%;
+    display: flex;
+}
+
+.views{
+    flex:1;
+    min-height: 100%;
+    padding-top:70px;
+    background-color: #FBFBFB;
+}

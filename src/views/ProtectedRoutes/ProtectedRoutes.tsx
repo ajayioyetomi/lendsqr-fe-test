@@ -1,6 +1,7 @@
 import { useAuth } from "../../hooks";
 import { Navigate,Outlet } from "react-router-dom";
 import { Header,SideBar } from "../../custom-ui";
+import styles from './style.module.scss';
 
 const ProtectedRoutes = () => {
   const {isAuthenticated} = useAuth();
@@ -8,11 +9,9 @@ const ProtectedRoutes = () => {
   return (
     <>
     <Header />
-    <main>
-        <aside>
-            <SideBar />
-        </aside>
-        <section>
+    <main className={styles.container}>
+        <SideBar />
+        <section className={styles.views}>
             <Outlet />
         </section>
     </main>

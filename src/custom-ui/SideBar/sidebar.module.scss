@@ -1,0 +1,10 @@
+@use '../../css/variables.scss' as variables;
+@use '../../css/mixins.scss' as mixin;
+
+.container{
+    width:200px;
+    height:100%;
+    padding-top:70px;
+    background-color: variables.$white_color;
+    box-shadow: 0px 5px 20px 0px #0000000A;
+}

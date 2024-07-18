@@ -10,6 +10,7 @@
         align-items: center;
         gap:.4rem;
         background-color: transparent;
+        color:variables.$primary-text-2;
         outline: none;
         border:none;
         & > img{
@@ -21,9 +22,13 @@
             font-size: .7rem;
             text-transform: capitalize;
             display:none;
+            font-family: variables.$mediumFont;
             @include mixin.breakpoint(md){
                 display: inline-block;
             }
+        }
+        & > svg{
+            font-size: 1rem;
         }
     }
     & > ul{
@@ -47,12 +52,18 @@
             padding:.3rem .6rem;
             cursor: pointer;
             color:variables.$primary_text_2;
+            & > a{
+                color:variables.$primary_text_2;
+            }
             &:hover{
                 background-color: hsl(from variables.$primary_color_2 h s l /.25);
                 color:variables.$white_color;
+                & > a{
+                    color:variables.$white_color;
+                }
             }
             @include mixin.breakpoint(md){
-                &:first-child{
+                &:first-child,&:nth-child(2){
                     display: none;
                 }
             }
