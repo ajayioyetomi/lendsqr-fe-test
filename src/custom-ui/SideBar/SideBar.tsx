@@ -151,7 +151,7 @@ const sideLinks = [
         icon: <PriceIcon />
       },
       {
-        id:2,
+        id:3,
         name:'Audit Logs',
         path:'/audit-logs',
         icon: <AuditIcon />

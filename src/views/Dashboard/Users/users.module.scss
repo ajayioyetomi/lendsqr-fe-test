@@ -1,0 +1,36 @@
+@use '../../../css/variables.scss' as variables;
+
+
+.cardContainer{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: space-between;
+    gap:1.5rem;
+    & > div{
+        display: flex;
+        flex-direction: column;
+        gap:.5rem;
+        padding:1rem;
+        background-color: variables.$white_color;
+        border-radius: .1rem;
+        color:variables.$primary_text_2;
+        box-shadow: 3px 5px 20px 0px #0000000A;
+        border: 1px solid #213F7D0F;
+        & > span:first-of-type{
+            text-transform: uppercase;
+            font-size: .6rem;
+            font-family: variables.$mediumFont;
+        }
+        & > span:last-of-type{
+            text-transform: uppercase;
+            font-size: .8rem;
+            font-family: variables.$boldFont;
+        }
+
+    }
+}
+
+.container{
+    
+
+}

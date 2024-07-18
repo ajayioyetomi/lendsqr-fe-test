@@ -3,14 +3,21 @@
   font-size: 20px;
 }
 
-a,button{
-  cursor:pointer;
-}
+
 
 *{
   box-sizing: border-box;
   font-family: variables.$normalFont;
   text-decoration: none;
+}
+.heading{
+  font-family: variables.$boldFont;
+  color:variables.$primary_text_2;
+  margin:0 0 1rem 0;
+}
+
+a,button{
+  cursor:pointer;
 }
 
 body{
