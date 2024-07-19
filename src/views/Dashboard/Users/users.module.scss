@@ -38,11 +38,85 @@
 
 .tableContainer{
     display: grid;
+    height: 100vh;
     & > div:first-of-type{
         background-color: variables.$white_color;
         box-shadow: 3px 5px 20px 0px #0000000A;
         border: 1px solid #213F7D0F;
+        padding:1rem;
+        display: grid;
+        gap:1rem;
     }
-    
+}
 
+.row{
+    display: grid;
+    grid-template-columns: .5fr .6fr 1fr 1fr 1fr 150px 50px;
+    gap:.2rem;
+}
+
+.filter{
+    position: relative;
+    & > button{
+        display: flex;
+        width: 100%;
+        border:none;
+        background-color: transparent;
+        color:variables.$primary_text_2;
+        font-family: variables.$boldFont;
+        gap:.3rem;
+        align-items: center;
+        text-transform: uppercase;
+        font-size: .5rem;
+        & > svg{
+            font-size: .7rem;
+        }
+
+        &:focus-visible{
+            outline: transparent;
+        }
+    }
+    & > ul{
+        position:absolute;
+        border-radius: .2rem;
+        top:30px;
+        left:0;
+        margin:0;
+        padding:.8rem .5rem;
+        background-color: variables.$white_color;
+        border: 1px solid #545F7D24;
+        box-shadow: 3px 5px 20px 0px #0000000A;
+        width:200px;
+        list-style-type: none;
+        display: grid;
+        gap:.5rem;
+        & > li{
+            display: flex;
+            flex-direction: column;
+            gap:.3rem;
+            & > span{
+                font-size: .6rem;
+                color:variables.$primary_text_2;
+                font-family: variables.$mediumFont;
+            }
+            & > select,& > input{
+                width: 100%;
+                color:variables.$primary_text_1;
+                border: 2px solid hsl(from variables.$primary_border_1 h s l /.15);
+                padding:.2rem;
+                border-radius: .2rem;
+                &::placeholder{
+                    color:hsl(from variables.$primary_border_1 h s l /.5);
+                }
+                &:focus-visible{
+                    outline:transparent;
+                }
+            }
+
+            &:last-of-type{
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+    }
 }
