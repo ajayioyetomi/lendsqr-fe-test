@@ -6,6 +6,8 @@ import loanIcon  from '../../../assets/users/loan-icon.png';
 import savingsIcon from '../../../assets/users/savings-icon.png';
 import { useMemo, useState, useRef, useEffect } from "react";
 import { MdFilterList as FilterIcon } from "react-icons/md";
+import { BsThreeDotsVertical as MoreIcon } from "react-icons/bs";
+import moment from "moment";
 
 
 const Heading = ()=>{
@@ -13,6 +15,26 @@ const Heading = ()=>{
 }
 
 const Users = () => {
+  const users_list = useMemo(()=>[
+    {
+      id:1,
+      organization:'LendSqr',
+      username:'Adedeji',
+      email:'ajayio@djeljro.com',
+      phone_number:'08077474745',
+      date_joined:new Date().toString(),
+      status:'active',
+    },
+    {
+      id:1,
+      organization:'LendSqr',
+      username:'Adedeji',
+      email:'ajayio@djeljro.com',
+      phone_number:'08077474745',
+      date_joined:new Date().toString(),
+      status:'inactive',
+    }
+  ],[]);
   return (
     <section className={styles.container}>
       <div className={styles.cardContainer}>
@@ -21,7 +43,7 @@ const Users = () => {
         <Card src={loanIcon} title="users with loans" value="12,543"/>
         <Card src={savingsIcon} title="usesrs with savings" value="102,543"/>        
       </div>
-      <UserTable />
+      <UserTable users={users_list} />
     </section>
   )
 }
@@ -36,7 +58,7 @@ const Card = ({src,title="",value=""}:{src:string,title:string,value:string}) =>
   )
 }
 
-const UserTable = () =>{
+const UserTable = ({users}:any) =>{
     const filter_list = useMemo(()=>[
       'organization',
       'username',
@@ -56,7 +78,27 @@ const UserTable = () =>{
               )}
               <div></div>
           </div>
-          <div>Content</div>
+          <div>
+            {users.map((eUser:any) =>
+            <div className={styles.row} key={eUser.id}>
+              <div>{eUser.organization}</div>
+              <div>{eUser.username}</div>
+              <div>{eUser.email}</div>
+              <div>{eUser.phone_number}</div>
+              <div>{moment(eUser.date_joined).format('MMMM Do YYYY, h:mm:ss a')}</div>
+              <div >
+                <span className={styles[eUser.status]}>{eUser.status}</span>
+              </div>
+              <div className={styles.moreContainer}>
+                <MoreIcon />
+                <ul>
+                  <li>Edit</li>
+                </ul>
+
+              </div>              
+            </div>            
+            )}
+          </div>
         </div>
         <div>Pagination</div>
 
@@ -73,7 +115,7 @@ const Filter =({title,menu}:{title:string,menu:any})=>{
       }
       set_active(title);
   }
-  const parentRef = useRef<HTMLButtonElement | null>(null);
+  const parentRef = useRef<HTMLSpanElement | null>(null);
   const childRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(()=>{
@@ -95,7 +137,7 @@ const Filter =({title,menu}:{title:string,menu:any})=>{
   },[])
   return(
     <div className={styles.filter}>
-      <button ref={parentRef} onClick={handleClick}>{title} <FilterIcon /></button>
+      <span ref={parentRef} onClick={handleClick}>{title} <FilterIcon /></span>
       {title === active?<ul ref={childRef}>
         <li>
           <span>Organization</span>

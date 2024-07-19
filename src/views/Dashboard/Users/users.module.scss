@@ -1,9 +1,32 @@
 @use '../../../css/variables.scss' as variables;
 @use '../../../css/mixins.scss' as mixin;
+.active{
+    color:variables.$active;
+    background-color: hsl(from variables.$active h s l /.15);
+}
+.inactive{
+    color:variables.$inactive;
+    background-color: hsl(from variables.$inactive h s l /.15);
+}
+.pending{
+    color:variables.$pending;
+    background-color: hsl(from variables.$pending h s l /.15);
+}
+.blacklisted{
+    color:variables.$blacklisted;
+    background-color: hsl(from variables.$blacklisted h s l /.15);
+}
 
+@mixin lableColor($label){
+    $color:variables($label);
+    color:$color;
+    background-color: hsl(from $color h s l /.15);
+
+}
 .container{
     display: grid;
     gap:1rem;
+    
 }
 
 .cardContainer{
@@ -38,26 +61,49 @@
 
 .tableContainer{
     display: grid;
-    height: 100vh;
     & > div:first-of-type{
+        height: 500px;
         background-color: variables.$white_color;
         box-shadow: 3px 5px 20px 0px #0000000A;
         border: 1px solid #213F7D0F;
         padding:1rem;
-        display: grid;
+        display: flex;
+        flex-direction: column;
         gap:1rem;
+        & > div{
+            &:nth-of-type(2){
+                display: grid;
+                & > div{
+                    border-bottom: 1px solid hsl(from variables.$primary_border_1 h s l /.15);
+                    padding:.7rem 0;
+                    & > div{
+                        font-size:.7rem;
+                        font-family: variables.$mediumFont;
+                        color:variables.$primary_text_2;
+                        &:nth-last-child(2){
+                            & > span{
+                                padding:.2rem 1rem;
+                                border-radius: .7rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+
 }
 
 .row{
     display: grid;
-    grid-template-columns: .5fr .6fr 1fr 1fr 1fr 150px 50px;
+    grid-template-columns: .5fr .6fr 1fr 1fr 1.1fr 120px 30px;
     gap:.2rem;
 }
 
 .filter{
     position: relative;
-    & > button{
+    & > span{
+        cursor: pointer;
         display: flex;
         width: 100%;
         border:none;
@@ -116,7 +162,40 @@
             &:last-of-type{
                 flex-direction: row;
                 justify-content: space-between;
+                & > button{
+                    background-color: white;
+                    color:variables.$primary_text_2;
+                    border:1px solid variables.$primary_border_1;
+                    flex:1;
+                    border-radius: .2rem;
+                    padding:.3rem 0;
+                    font-family: variables.$mediumFont;
+                    &:last-of-type{
+                        color:white;
+                        background-color: variables.$primary_color_2;
+                        border-color:variables.$primary_color_2;
+                    }
+                }
             }
         }
+    }
+}
+
+.moreContainer{
+    position: relative;
+    & > ul{
+        z-index: 9;
+        list-style: none;
+        display:none;
+        background-color: variables.$white_color;
+        box-shadow: 3px 5px 20px 0px #0000000A;
+        border: 1px solid #213F7D0F;
+        margin:0;
+        width:150px;
+        position: absolute;
+        top:0px;
+        right:0;
+        border-radius: .2rem;
+        padding:.5rem 0;
     }
 }
