@@ -1,11 +1,16 @@
 @use '../../../css/variables.scss' as variables;
+@use '../../../css/mixins.scss' as mixin;
 
+.container{
+    display: grid;
+    gap:1rem;
+}
 
 .cardContainer{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     justify-content: space-between;
-    gap:1.5rem;
+    gap:2dvw;
     & > div{
         display: flex;
         flex-direction: column;
@@ -25,12 +30,19 @@
             text-transform: uppercase;
             font-size: .8rem;
             font-family: variables.$boldFont;
+            margin-top:auto;
         }
 
     }
 }
 
-.container{
+.tableContainer{
+    display: grid;
+    & > div:first-of-type{
+        background-color: variables.$white_color;
+        box-shadow: 3px 5px 20px 0px #0000000A;
+        border: 1px solid #213F7D0F;
+    }
     
 
 }

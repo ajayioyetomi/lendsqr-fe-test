@@ -160,10 +160,10 @@ const sideLinks = [
   }
 ]
 
-const SideBar = () => {
+const SideBar = ({show_menu}:any) => {
 
   return (
-    <aside className={styles.container}>
+    <aside className={`${styles.container} ${show_menu?styles.showContainer:styles.hideContainer}`}>
       <div>
         <button>
           <OrganizationIcon />

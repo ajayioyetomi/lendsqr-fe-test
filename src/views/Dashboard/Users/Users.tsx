@@ -19,6 +19,7 @@ const Users = () => {
         <Card src={loanIcon} title="users with loans" value="12,543"/>
         <Card src={savingsIcon} title="usesrs with savings" value="102,543"/>        
       </div>
+      <UserTable />
     </section>
   )
 }
@@ -31,6 +32,19 @@ const Card = ({src,title="",value=""}:{src:string,title:string,value:string}) =>
       <span>{value}</span>
     </div>
   )
+}
+
+const UserTable = () =>{
+    return(
+      <div className={styles.tableContainer}>
+        <div>
+          <div>Title</div>
+          <div>Content</div>
+        </div>
+        <div>Pagination</div>
+
+      </div>
+    )
 }
 
 export default withTitle(Users,Heading);

@@ -12,9 +12,43 @@
     background-color: variables.$white_color;
     box-shadow: 3px 0px 20px 0px #0000000A;
     display: flex;
+    align-items: center;
     gap:30px;
     @include mixin.breakpoint(md){
         padding:.7rem 1rem;
+    }
+    & > button{
+        height: fit-content;
+        font-size: 1rem;
+        display: flex;
+        color:variables.$primary-text-2;
+        background-color: transparent;
+        border: none;
+        &:focus-visible{
+            outline:transparent;
+        }
+        & > svg{
+            &:nth-of-type(2){
+                display: none;
+            }
+        }
+        &.show{
+            & > svg:first-of-type{
+                display: none;
+            }
+            & > svg:nth-of-type(2){
+                display: inline-block;
+            }
+        }
+        @include mixin.breakpoint(md){
+            display: none;
+            & > svg:first-of-type{
+                display: inline-block;
+            }
+            & > svg:nth-of-type(2){
+                display: none;
+            }
+        }
     }
     & > a{
         display: flex;
