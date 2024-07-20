@@ -8,6 +8,8 @@ import { useMemo, useState, useRef, useEffect } from "react";
 import { MdFilterList as FilterIcon } from "react-icons/md";
 import { BsThreeDotsVertical as MoreIcon } from "react-icons/bs";
 import moment from "moment";
+import { useQuery } from "@tanstack/react-query";
+import api from "../../../utils";
 
 
 const Heading = ()=>{
@@ -26,7 +28,7 @@ const Users = () => {
       status:'active',
     },
     {
-      id:1,
+      id:2,
       organization:'LendSqr',
       username:'Adedeji',
       email:'ajayio@djeljro.com',
@@ -35,6 +37,17 @@ const Users = () => {
       status:'inactive',
     }
   ],[]);
+  const {data,isLoading} = useQuery({
+    queryKey:['all-users'],
+    queryFn:async()=>{
+      return await api().get(`templates/KCFe4dG8lb6U/data`);
+    },
+    select:(data:any)=>{
+      console.log(data,'data');
+      return data;
+    }
+  })
+  console.log(data,isLoading,'data')
   return (
     <section className={styles.container}>
       <div className={styles.cardContainer}>
