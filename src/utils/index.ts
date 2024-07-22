@@ -34,7 +34,6 @@ const get = function(url:string,shouldAddAuthorization=true){
             reject(res);
         })
         .then(data => {
-            console.log(data,'data')
             resolve(data);
         })
         .catch(err => {

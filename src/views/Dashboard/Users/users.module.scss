@@ -62,7 +62,7 @@
 .tableContainer{
     display: grid;
     & > div:first-of-type{
-        height: 500px;
+        min-height: 520px;
         background-color: variables.$white_color;
         box-shadow: 3px 5px 20px 0px #0000000A;
         border: 1px solid #213F7D0F;
@@ -94,15 +94,13 @@
             }
         }
     }
-    & > div:nth-of-type(2){
-        margin-top:1rem;
-    }
+   
 
 }
 
 .row{
     display: grid;
-    grid-template-columns: .5fr .6fr 1fr 1fr 1.1fr 120px 30px;
+    grid-template-columns: .5fr .6fr 1fr .6fr 1.1fr 120px 30px;
     gap:.2rem;
 }
 
@@ -205,3 +203,4 @@
         padding:.5rem 0;
     }
 }
+

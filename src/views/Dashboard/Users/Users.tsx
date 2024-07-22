@@ -10,6 +10,8 @@ import { BsThreeDotsVertical as MoreIcon } from "react-icons/bs";
 import moment from "moment";
 import { useQuery } from "@tanstack/react-query";
 import api from "../../../utils";
+import { Pagination } from "../../../components";
+
 
 
 const Heading = ()=>{
@@ -17,37 +19,15 @@ const Heading = ()=>{
 }
 
 const Users = () => {
-  const users_list = useMemo(()=>[
-    {
-      id:1,
-      organization:'LendSqr',
-      username:'Adedeji',
-      email:'ajayio@djeljro.com',
-      phone_number:'08077474745',
-      date_joined:new Date().toString(),
-      status:'active',
-    },
-    {
-      id:2,
-      organization:'LendSqr',
-      username:'Adedeji',
-      email:'ajayio@djeljro.com',
-      phone_number:'08077474745',
-      date_joined:new Date().toString(),
-      status:'inactive',
-    }
-  ],[]);
-  const {data,isLoading} = useQuery({
+  const {data:users,} = useQuery({
     queryKey:['all-users'],
     queryFn:async()=>{
       return await api().get(`templates/KCFe4dG8lb6U/data`);
     },
     select:(data:any)=>{
-      console.log(data,'data');
       return data;
     }
   })
-  console.log(data,isLoading,'data')
   return (
     <section className={styles.container}>
       <div className={styles.cardContainer}>
@@ -56,7 +36,7 @@ const Users = () => {
         <Card src={loanIcon} title="users with loans" value="12,543"/>
         <Card src={savingsIcon} title="usesrs with savings" value="102,543"/>        
       </div>
-      <UserTable users={users_list} />
+      <UserTable users={users} />
     </section>
   )
 }
@@ -71,7 +51,7 @@ const Card = ({src,title="",value=""}:{src:string,title:string,value:string}) =>
   )
 }
 
-const UserTable = ({users}:any) =>{
+const UserTable = ({users=[]}:any) =>{
     const filter_list = useMemo(()=>[
       'organization',
       'username',
@@ -81,7 +61,12 @@ const UserTable = ({users}:any) =>{
       'status'
     ],[])
     const [active,set_active] = useState<null | string>(null);
-   
+    const [currentItems,setCurrentItems] = useState<any>(users?.slice(0,10));
+    useEffect(()=>{
+      if(users && users.length > 0)
+      setCurrentItems(users?.slice(0,10))
+    },[users])
+     
     return(
       <div className={styles.tableContainer}>
         <div>
@@ -92,15 +77,15 @@ const UserTable = ({users}:any) =>{
               <div></div>
           </div>
           <div>
-            {users.map((eUser:any) =>
+            {currentItems?.map((eUser:any) =>
             <div className={styles.row} key={eUser.id}>
               <div>{eUser.organization}</div>
-              <div>{eUser.username}</div>
+              <div>{eUser.fullname}</div>
               <div>{eUser.email}</div>
               <div>{eUser.phone_number}</div>
-              <div>{moment(eUser.date_joined).format('MMMM Do YYYY, h:mm:ss a')}</div>
+              <div>{moment(eUser.datejoined).format('MMMM Do YYYY, h:mm a')}</div>
               <div >
-                <span className={styles[eUser.status]}>{eUser.status}</span>
+                <span className={styles[eUser.status || 'pending'] }>{eUser.status||'pending'}</span>
               </div>
               <div className={styles.moreContainer}>
                 <MoreIcon />
@@ -113,7 +98,7 @@ const UserTable = ({users}:any) =>{
             )}
           </div>
         </div>
-        <div>Pagination</div>
+        <Pagination items={users} onChange={setCurrentItems} />
 
       </div>
     )

@@ -1,0 +1,77 @@
+@use '../../css/variables.scss' as variables;
+@use '../../css/mixins.scss' as mixin;
+.container{
+    width:100%;
+    margin-top:1rem;
+    display: flex;
+    justify-content: space-between;
+    & > div:first-of-type{
+        font-size: .6rem;
+        color:variables.$primary_text_2;
+        display: flex;   
+    }
+}
+
+.pageUl{
+    display: flex;
+    margin:0;
+    list-style-type: none;
+    font-size: .6rem;
+    gap:.3rem;
+    align-items: center;
+    & > li{
+        color:variables.$primary_text_1;
+    }
+    & > li[class="selected"] > a{
+        color:variables.$primary_text_2;
+        font-family: variables.$boldFont;
+    }
+}
+
+.selectContainer{
+    position: relative;
+    & > span{
+        @include mixin.flexCenter;
+        width:1.5rem;
+        background-color: hsl(from variables.$primary_text_2 h s l /.20);
+        padding:.2px .5rem;
+        margin:0 .4rem;
+        border-radius: .2rem;
+        cursor: pointer;
+        gap:.2rem;
+        & > span{
+            font-size:.4rem;
+        }
+    }
+    & > ul{
+        list-style: none;
+        background-color: white;
+        display: grid;
+        padding:.4rem 0;
+        position: absolute;
+        bottom:.5rem;
+        left:0;
+        background-color: variables.$white_color;
+        box-shadow: 3px 5px 20px 0px #0000000A, 0 -2px 10px 1px #0000000A;
+        height:200px;
+        width:1.8rem;
+        overflow: clip auto;
+        &::-webkit-scrollbar{
+            width:0;
+        }
+        & > li{
+            padding:.2rem .4rem;
+            @include mixin.flexCenter;
+            cursor: pointer;
+        }
+    }
+}
+
+.btn{
+    @include mixin.flexCenter;
+    width: 1rem;
+    height: 1rem;
+    color:variables.$primary_text_2;
+    background-color: hsl(from variables.$primary_text_2 h s l /.20);
+    border-radius: .2rem;
+}
