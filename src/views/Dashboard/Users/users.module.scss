@@ -190,17 +190,26 @@
     & > ul{
         z-index: 9;
         list-style: none;
-        display:none;
+        display:flex;
         background-color: variables.$white_color;
         box-shadow: 3px 5px 20px 0px #0000000A;
         border: 1px solid #213F7D0F;
         margin:0;
         width:150px;
         position: absolute;
-        top:0px;
+        top:-.4rem;
         right:0;
         border-radius: .2rem;
         padding:.5rem 0;
+        flex-direction: column;
+        & > li{
+            padding:.35rem .5rem;
+            display: flex;
+            gap:.3rem;
+            align-items: center;
+            font-family: variables.$mediumFont;
+            color:variables.$primary_text_2;
+            cursor: pointer;
+        }
     }
 }
-

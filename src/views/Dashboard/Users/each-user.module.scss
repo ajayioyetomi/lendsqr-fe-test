@@ -1,0 +1,58 @@
+@use '../../../css/variables.scss' as variables;
+@use '../../../css/mixins.scss' as mixin;
+
+.back{
+    color: variables.$primary_text_2;
+    font-size: .6rem;
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+    & > span{
+        font-size: 1rem;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.container{
+    margin-top:1rem;
+    & > div:first-of-type{
+        display: flex;
+        gap:1rem;
+        & > span{
+            font-family: variables.$boldFont;
+            color:variables.$primary_text_2;
+        }
+        & > button:first-of-type{
+            margin-left: auto;
+
+        }
+    }
+    & > div:nth-of-type(2){
+        display: flex;
+        flex-direction: column;
+        gap:1rem;
+    }
+
+}
+
+.headContainer{
+    background-color: variables.$white_color;
+    padding:1rem 1rem 2px;
+    & > div:first-of-type{  
+        display: flex;
+        gap:1rem;
+        & > div:first-of-type{
+            & > span{
+                width: 4rem;
+                height: 4rem;
+                @include mixin.flexCenter;
+                border-radius: 50%;
+                color: variables.$primary_text_2;
+                background-color: hsl(from variables.$primary_color_1 h s l /.20);
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

@@ -1,7 +1,27 @@
 @use './css/variables.scss' as variables;
 :root{
   font-size: 20px;
+  --white_color:#fff;
+  --black_color:#000;
+  --primary_color_1:#213F7D;
+  --primary_color_2:#39CDCC;
+  --primary_text_1:#545F7D;
+  --primary_text_2:#213F7D;
+  --primary_text_3:#39CDCC;
+  --primary_border_1:#545F7D;
+  --inactive:#545F7D;
+  --active:#39CD62;
+  --pending:#E9B200;
+  --blacklisted:#E4033B;
+  --thinFont:'Avenir Next Thin';
+  --normalThinFont: 'Avenir Next Normal Thin';
+  --lightFont: 'Avenir Next Light';
+  --normalFont:'Avenir Next Normal';
+  --mediumFont:'Avenir Next Medium';
+  --boldFont:'Avenir Next Bold';
+  --extraBoldFont:'Avenir Next Extra Bold';
 }
+
 
 
 

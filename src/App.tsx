@@ -1,5 +1,5 @@
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
-import { Dashboard,Users,Login,ProtectedRoutes } from "./views";
+import { Dashboard,Users,EachUser,Login,ProtectedRoutes } from "./views";
 import ProtectedProvider from "./context/ProtectedProvider";
 function App() {
 
@@ -13,7 +13,8 @@ function App() {
             <Route element={<ProtectedRoutes />}>
               <Route path="/*" element={<Dashboard />} />
               <Route path="dashboard/*" element={<Dashboard />} />
-              <Route path="users/*" element={<Users />} />
+              <Route path="users" element={<Users />} />
+              <Route path="user/:id" element={<EachUser />} />
             </Route>
           </Routes>
         </Router>

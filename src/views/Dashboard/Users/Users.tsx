@@ -7,10 +7,13 @@ import savingsIcon from '../../../assets/users/savings-icon.png';
 import { useMemo, useState, useRef, useEffect } from "react";
 import { MdFilterList as FilterIcon } from "react-icons/md";
 import { BsThreeDotsVertical as MoreIcon } from "react-icons/bs";
+import { FaRegEye as ViewIcon } from "react-icons/fa6";
+import { SlUserUnfollow as BlacklistIcon, SlUserFollowing as ActivateIcon} from "react-icons/sl";
 import moment from "moment";
 import { useQuery } from "@tanstack/react-query";
 import api from "../../../utils";
 import { Pagination } from "../../../components";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -87,13 +90,7 @@ const UserTable = ({users=[]}:any) =>{
               <div >
                 <span className={styles[eUser.status || 'pending'] }>{eUser.status||'pending'}</span>
               </div>
-              <div className={styles.moreContainer}>
-                <MoreIcon />
-                <ul>
-                  <li>Edit</li>
-                </ul>
-
-              </div>              
+              <More user={eUser} />           
             </div>            
             )}
           </div>
@@ -168,6 +165,44 @@ const Filter =({title,menu}:{title:string,menu:any})=>{
         </li>
       </ul>:''}
     </div>
+  )
+}
+
+const More = ({user}:{user:any}) =>{
+  const [show,set_show] = useState<boolean>(false);
+  const parentRef = useRef<HTMLDivElement | null>(null);
+  const childRef = useRef<HTMLUListElement | null>(null);
+  const navigate = useNavigate();
+  const handleViewDetails = (id:string)=>{
+    navigate(`/user/${id}`)
+  }
+  
+  useEffect(()=>{
+    const handleOutsideClick = (e:any)=>{
+        if(parentRef && parentRef.current && childRef && childRef.current){
+            const parentDimensions = parentRef.current.getBoundingClientRect();
+            const childDimensions = childRef.current.getBoundingClientRect();
+            if( e.clientX < childDimensions.left ||
+                e.clientX > parentDimensions.right ||
+                e.clientY < parentDimensions.top ||
+                e.clientY > childDimensions.bottom){
+                    set_show(false);
+            }   
+        }
+    }
+    window.addEventListener('click',handleOutsideClick);
+
+    return ()=> window.removeEventListener('click',handleOutsideClick);
+  },[])
+  return(
+    <div ref={parentRef} className={styles.moreContainer}>
+      <span  onClick={()=>set_show(!show)}><MoreIcon /></span>
+      {show?<ul ref={childRef}>
+        <li onClick={()=>handleViewDetails(user.id)}><ViewIcon /> View Details</li>
+        <li><BlacklistIcon />Blacklist User</li>
+        <li><ActivateIcon />Activate User</li>
+      </ul>:''}
+    </div> 
   )
 }
 
