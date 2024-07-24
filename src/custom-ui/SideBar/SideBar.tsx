@@ -1,6 +1,6 @@
 import styles from './sidebar.module.scss';
 import { FaToolbox as OrganizationIcon } from "react-icons/fa6";
-import { FaChevronDown as DownIcon,FaChevronUp as UpIcon,
+import { FaChevronDown as DownIcon,
   FaUserCheck as WhitelistIcon,FaUserXmark as KarmaIcon } from "react-icons/fa6";
 import { IoHome as DashboardIcon } from "react-icons/io5";
 import { HiUsers as UserIcon } from "react-icons/hi2";

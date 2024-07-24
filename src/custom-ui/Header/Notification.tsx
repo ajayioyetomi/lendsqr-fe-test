@@ -4,10 +4,10 @@ import { useState } from 'react';
 
 const Notification = () => {
     const [show,set_show] = useState<boolean>(false);
-    const [notifications,set_notifications] = useState<any>([]);
+
   return (
     <div className={styles.container}>
-        <span><BellIcon /></span>
+        <span onClick={()=>set_show(false)}><BellIcon /></span>
         {show?<ul></ul>:''}
     </div>
   )
