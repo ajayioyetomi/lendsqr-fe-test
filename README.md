@@ -1,30 +1,16 @@
-# React + TypeScript + Vite
+# LENDSQR FRONTEND TEST
+- Commands
+- Author 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Commands
+After the project has been clone. run the command below to run the application locally in development.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+### Commands
+To run locally: first run ```npm install``` to download all the necessary dependencies for the application locally. Then secondly to start the application locally in development, run ```npm start```. Then wait a few seconds and [click here](http://localhost:3300) to view the application in a browser Or open http://localhost:3300 on your favourite browser. 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To see the application currently running in production hosted on vercel [click here](https://taiwo-ajayi-lendsqr-fe-test.vercel.app/).
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## About Author
+My name is Taiwo Ajayi, I'm a passionate, experienced, and resourceful full-stack developer.
