@@ -9,6 +9,7 @@ $height: 30px;
 }
 
 .container{
+    flex-shrink: 0;
     position: fixed;
     display: none;
     top:0;

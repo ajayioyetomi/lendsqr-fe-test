@@ -14,6 +14,11 @@ $breakpoints:(
 
 );
 
+@mixin shadow{
+    box-shadow: 3px 5px 20px 0px #0000000A;
+    border: 1px solid #213F7D0F;
+}
+
 @mixin breakpoint($screen-width){
     $my-map:(map-get($breakpoints,$screen-width));
     @if($my-map){

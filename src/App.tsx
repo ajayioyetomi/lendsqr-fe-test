@@ -12,9 +12,9 @@ function App() {
             <Route path="/login" element={<Login />}/>
             <Route element={<ProtectedRoutes />}>
               <Route path="/*" element={<Dashboard />} />
-              <Route path="dashboard/*" element={<Dashboard />} />
-              <Route path="users" element={<Users />} />
-              <Route path="user/:id" element={<EachUser />} />
+              <Route path="/dashboard/*" element={<Dashboard />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/user/:id" element={<EachUser />} />
             </Route>
           </Routes>
         </Router>

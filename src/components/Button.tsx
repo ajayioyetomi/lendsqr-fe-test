@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Button = (props:any) => {
   const style = {
     width:'fit-content',
@@ -11,11 +9,11 @@ const Button = (props:any) => {
     backgroundColor: props.bg || 'transparent',
     outline:'none',
     borderRadius:props.radius?props.radius:'7px',
-    fontFamily:'var(--boldFont)'
+    fontFamily:'var(--boldFont)',
   }
   
   return (
-    <button style={style} {...props}>{props.children}</button>
+    <button {...props} style={{...style,...props.style}} >{props.children}</button>
   )
 }
 

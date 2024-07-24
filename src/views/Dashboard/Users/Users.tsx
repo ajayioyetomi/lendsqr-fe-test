@@ -65,6 +65,10 @@ const UserTable = ({users=[]}:any) =>{
     ],[])
     const [active,set_active] = useState<null | string>(null);
     const [currentItems,setCurrentItems] = useState<any>(users?.slice(0,10));
+    const setClassName = (name:string)=>{
+        let check = ['email','date joined','phone number'].find(e => e.includes(name));
+        return check ?styles.remove:'';
+    }
     useEffect(()=>{
       if(users && users.length > 0)
       setCurrentItems(users?.slice(0,10))
@@ -75,7 +79,7 @@ const UserTable = ({users=[]}:any) =>{
         <div>
           <div className={styles.row}>
               {filter_list.map((eFilter:string,ind) =>
-              <Filter key={ind} menu={{active,set_active}} title={eFilter} />
+              <Filter key={ind} className={setClassName(eFilter)} menu={{active,set_active}} title={eFilter} />
               )}
               <div></div>
           </div>
@@ -84,9 +88,9 @@ const UserTable = ({users=[]}:any) =>{
             <div className={styles.row} key={eUser.id}>
               <div>{eUser.organization}</div>
               <div>{eUser.fullname}</div>
-              <div>{eUser.email}</div>
-              <div>{eUser.phone_number}</div>
-              <div>{moment(eUser.datejoined).format('MMMM Do YYYY, h:mm a')}</div>
+              <div className={styles.remove}>{eUser.email}</div>
+              <div className={styles.remove}>{eUser.phone_number}</div>
+              <div className={styles.remove}>{moment(eUser.datejoined).format('MMMM Do YYYY, h:mm a')}</div>
               <div >
                 <span className={styles[eUser.status || 'pending'] }>{eUser.status||'pending'}</span>
               </div>
@@ -101,7 +105,7 @@ const UserTable = ({users=[]}:any) =>{
     )
 }
 
-const Filter =({title,menu}:{title:string,menu:any})=>{
+const Filter =({title,menu,className}:{title:string,menu:any,className?:string})=>{
   const {active,set_active} = menu;
   const handleClick = ()=>{
       if(title === active){
@@ -131,7 +135,7 @@ const Filter =({title,menu}:{title:string,menu:any})=>{
       return ()=> window.removeEventListener('click',handleOutsideClick);
   },[])
   return(
-    <div className={styles.filter}>
+    <div className={`${styles.filter} ${className}`}>
       <span ref={parentRef} onClick={handleClick}>{title} <FilterIcon /></span>
       {title === active?<ul ref={childRef}>
         <li>
