@@ -196,6 +196,8 @@
 
 .moreContainer{
     position: relative;
+    display: flex;
+    justify-content: flex-end;
     & > span{
         cursor: pointer;
     }

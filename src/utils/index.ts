@@ -78,3 +78,32 @@ const api = ():APITYPE =>({
 });
 
 export default api;
+
+export const convertNumberToString = (num:number) =>{
+    let tempNum = num.toString();
+    let len = tempNum.length;
+    let result = '';
+    let start = -3;
+    let end:number = 0;
+  
+    for(let i = len-1;i>=0;i-=3){
+        if(i == len-1){
+            result= `${tempNum.slice(start)}`;
+            end = start;
+            start-=3;
+            if(start < (len*-1)){
+                start = len*-1;
+            }
+        }       
+        else{
+            result= `${tempNum.slice(start,end)},${result}`;
+            end = start;
+            start-=3;
+            if(start < (len*-1)){
+                start = len*-1;
+            }
+        }
+    }
+    // console.log(result);
+    return result;
+  }

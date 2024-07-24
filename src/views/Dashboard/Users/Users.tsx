@@ -11,8 +11,8 @@ import { FaRegEye as ViewIcon } from "react-icons/fa6";
 import { SlUserUnfollow as BlacklistIcon, SlUserFollowing as ActivateIcon} from "react-icons/sl";
 import moment from "moment";
 import { useQuery } from "@tanstack/react-query";
-import api from "../../../utils";
-import { Pagination } from "../../../components";
+import api, { convertNumberToString } from "../../../utils";
+import { Pagination,Loading } from "../../../components";
 import { useNavigate } from "react-router-dom";
 
 
@@ -22,7 +22,7 @@ const Heading = ()=>{
 }
 
 const Users = () => {
-  const {data:users,} = useQuery({
+  const {data:users,isLoading} = useQuery({
     queryKey:['all-users'],
     queryFn:async()=>{
       return await api().get(`templates/KCFe4dG8lb6U/data`);
@@ -31,13 +31,14 @@ const Users = () => {
       return data;
     }
   })
+  if(isLoading) return <Loading />
   return (
     <section className={styles.container}>
       <div className={styles.cardContainer}>
-        <Card src={userIcon} title="users" value="2,543"/>
-        <Card src={activeIcon} title="active users" value="2,543"/>
-        <Card src={loanIcon} title="users with loans" value="12,543"/>
-        <Card src={savingsIcon} title="usesrs with savings" value="102,543"/>        
+        <Card src={userIcon} title="users" value={convertNumberToString(users.length)}/>
+        <Card src={activeIcon} title="active users" value={convertNumberToString(users.filter((eUser:any)=> eUser.status == 'active').length)}/>
+        <Card src={loanIcon} title="users with loans" value={convertNumberToString(users.filter((eUser:any)=> eUser.education.loan > 0).length)}/>
+        <Card src={savingsIcon} title="usesrs with savings" value={convertNumberToString(users.filter((eUser:any)=> eUser.savings > 0).length)}/>        
       </div>
       <UserTable users={users} />
     </section>

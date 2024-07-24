@@ -5,7 +5,7 @@ import { Button } from '../../../components';
 import styles from './each-user.module.scss';
 import { useState,useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import api from '../../../utils';
+import api, { convertNumberToString } from '../../../utils';
 import { AiOutlineUser as UserIcon } from "react-icons/ai";
 import { FaRegStar as EmptyStar, FaStar as FillStar } from "react-icons/fa";
 
@@ -70,7 +70,7 @@ const EachUser = () => {
               <div><FillStar /><EmptyStar/><EmptyStar /></div>
             </div>
             <div>
-              <div># 200,000.00</div>
+              <div># {convertNumberToString(user.savings|| 0)}.00</div>
               <div>874747484/ Providus Bank</div>
             </div>
           </div>
