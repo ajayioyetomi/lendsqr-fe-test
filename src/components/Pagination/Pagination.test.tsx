@@ -1,5 +1,6 @@
-import {describe,expect,it} from 'vitest';
+import {describe,expect,it, vitest} from 'vitest';
 import {render,screen} from '@testing-library/react';
+import { Vitest } from 'vitest';
 import Pagination from './Pagination';
 
 const test_items = [
@@ -9,9 +10,8 @@ const test_items = [
 
 describe("Render Pagination",()=>{
     it("Test Pagination Component",()=>{
-        render(<Pagination onChange={(arg:any)=>{
-            let param = arg;
-        }} items={test_items} isTest={true} />);
+        let onClick = vitest.fn();
+        render(<Pagination onChange={onClick} items={test_items} isTest={true} />);
         screen.debug();
         expect(screen.getByTestId('test-page-container')).toBeTruthy();
         expect(screen.getAllByTestId('test-page-list').length).toBe(3);
