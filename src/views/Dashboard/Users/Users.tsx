@@ -146,14 +146,13 @@ const FilterSort =({title,onChange,items,className}:{className?:string,title:str
       if(mode === 0) set_mode(1);
       else set_mode(0);
       let newData = items?.sort((a:any,b:any) => {
-        if(!mode){
-          if(a[key].toString().toLowerCase()<b[key].toString().toLowerCase()) return -1;
-          if(b[key].toString().toLowerCase()>a[key].toString().toLowerCase()) return 1;
-          return 0;
-        }
-        if(a[key].toString().toLowerCase()<b[key].toString().toLowerCase()) return 1;
-        if(b[key].toString().toLowerCase()>a[key].toString().toLowerCase()) return -1;
-        return 0;
+        if(!mode)
+        return (a[key].toString().toLowerCase().localeCompare(b[key].toString().toLowerCase()));
+        return (b[key].toString().toLowerCase().localeCompare(a[key].toString().toLowerCase()));
+         
+         
+        
+        
         
       })
       onChange([...newData]);        
