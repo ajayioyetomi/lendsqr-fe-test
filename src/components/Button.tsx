@@ -13,7 +13,7 @@ const Button = (props:any) => {
   }
   
   return (
-    <button {...props} style={{...style,...props.style}} >{props.children}</button>
+    <button {...props} style={{...style,...props.style}} className={props.className||''} >{props.children}</button>
   )
 }
 

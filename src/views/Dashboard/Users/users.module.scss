@@ -107,13 +107,13 @@
     display: grid;
     grid-template-columns: .5fr 1fr 120px 30px;
     @include mixin.breakpoint(1030px){
-        grid-template-columns: .5fr .6fr 1.1fr 1fr .6fr 120px 30px;
+        grid-template-columns: .5fr .6fr 1fr .6fr 1.1fr 120px 30px;
     }
    
     gap:.2rem;
 }
 
-.filter{
+.filterSort{
     position: relative;
     & > span{
         cursor: pointer;
@@ -135,10 +135,39 @@
             outline: transparent;
         }
     }
+}
+
+.filter{
+    position: relative;
+    z-index: 1;
+    & > span{
+        cursor: pointer;
+        display: flex;
+        width: fit-content;
+        border:none;
+        background-color: transparent;
+        color:variables.$primary_text_2;
+        font-family: variables.$boldFont;
+        gap:.3rem;
+        align-items: center;
+        text-transform: uppercase;
+        font-size: .8rem;
+        border:1px solid variables.$primary_text_2;
+        padding:.1rem .5rem;
+        margin-bottom: .5rem;
+        border-radius: .3rem;
+        & > svg{
+            font-size: .7rem;
+        }
+
+        &:focus-visible{
+            outline: transparent;
+        }
+    }
     & > ul{
         position:absolute;
         border-radius: .2rem;
-        top:30px;
+        top:28px;
         left:0;
         margin:0;
         padding:.8rem .5rem;
@@ -149,6 +178,7 @@
         list-style-type: none;
         display: grid;
         gap:.5rem;
+        z-index: 1;
         & > li{
             display: flex;
             flex-direction: column;

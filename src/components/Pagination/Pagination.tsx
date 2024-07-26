@@ -3,9 +3,9 @@ import ReactPaginate from 'react-paginate';
 import { useEffect, useMemo, useState, useRef } from 'react';
 import { FaChevronLeft as PreviousIcon,FaChevronRight as NextIcon,FaChevronDown as DownIcon} from "react-icons/fa6";
 
-const Pagination = ({items,onChange}:{items:[any],onChange:Function}) => {
+const Pagination = ({items,onChange,isTest=false}:{items:any[],onChange:Function,isTest?:boolean}) => {
     const [itemOffset, setItemOffset] = useState(0);
-    const [show,set_show] = useState<boolean>(false);
+    const [show,set_show] = useState<boolean>(isTest);
     let itemsPerPage = 10;
     const pageCount = useMemo(()=>Math.ceil(items?.length / itemsPerPage),[items]) ;
     const [options,set_options] = useState<number[]>([1]);
@@ -57,8 +57,8 @@ const Pagination = ({items,onChange}:{items:[any],onChange:Function}) => {
     },[])
 
   return (
-    <div className={styles.container}>
-        <div >
+    <div data-testid="test-page-container" className={styles.container}>
+        <div>
           Showing 
           <div ref={parentRef} className={styles.selectContainer}>
             <span onClick={()=>set_show(!show)}>{Math.floor(itemOffset/10)+1} <span><DownIcon /></span></span>
@@ -66,7 +66,7 @@ const Pagination = ({items,onChange}:{items:[any],onChange:Function}) => {
               show? 
               <ul ref={childRef}>
                 {options?.map((eOption:any) =>
-                <li key={eOption} onClick={()=>handleGoTo(parseInt(eOption)-1)}>{eOption}</li>
+                <li data-testid="test-page-list" key={eOption} onClick={()=>handleGoTo(parseInt(eOption)-1)}>{eOption}</li>
                 )}
               </ul>:''
             }

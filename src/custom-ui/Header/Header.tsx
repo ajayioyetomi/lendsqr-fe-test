@@ -21,7 +21,7 @@ const Header = ({set_show_menu,show_menu}:any) => {
       </NavLink>
       <nav>
         <SearchForm />
-        <div>
+        <div data-testid="test-doc-div">
           <NavLink to="/docs">Docs</NavLink>
           <Notification />
           <Profile />

@@ -1,3 +1,4 @@
+'--jsx';
 import styles from './login.module.scss';
 import brand_image from '../../../assets/brand_image.svg';
 import logo from '../../../assets/logo.svg';
@@ -51,7 +52,7 @@ const Login = () => {
   },[])
   
   return (
-    <main className={styles.container}>
+    <main id="main" data-testid="test-login-main" className={styles.container}>
         <div>
           <NavLink to="/login" className={styles.logo}>
             <img src={logo} height='30px' />
@@ -63,7 +64,7 @@ const Login = () => {
         <div>
           <div>
             <div>
-              <h1>Welcome!</h1>
+              <h1 data-testid="test-header">Welcome!</h1>
               <p>Enter details to login</p>
             </div>
             <Formik
@@ -79,15 +80,15 @@ const Login = () => {
             >
               {({errors}:any)=>{
                 return (<Form >
-                <label>
-                  <Field type="email" name="Email" placeholder="Email" validate={validateEmail} />
+                <label >
+                  <Field data-testid="test-email-field" type="email" name="Email" placeholder="Email" validate={validateEmail} />
                 </label>
-                <div>{errors && errors.Email?errors.Email:''}</div>
+                <div data-testid="test-email-error">{errors?.Email||''}</div>
                 <label>
-                  <Field type={type} name="Password" placeholder='Password' />
+                  <Field data-testid="test-password-field" type={type} name="Password" placeholder='Password' />
                   <span onClick={handleType}>{type === 'text'?'hide':'show'}</span>
                 </label>
-                <div>{errors && errors.Password?errors.Password:''}</div>
+                <div data-testid="test-password-error">{errors?.Password||''}</div>
                 <NavLink to="/forgot-password">Forgot Fassword?</NavLink>
                 <button type='submit'>LOG IN </button>
               </Form>

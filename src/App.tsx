@@ -1,6 +1,7 @@
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import { Dashboard,Users,EachUser,Login,ProtectedRoutes } from "./views";
 import ProtectedProvider from "./context/ProtectedProvider";
+
 function App() {
 
   return (
