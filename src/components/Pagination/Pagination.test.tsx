@@ -1,6 +1,5 @@
 import {describe,expect,it, vitest} from 'vitest';
 import {render,screen} from '@testing-library/react';
-import { Vitest } from 'vitest';
 import Pagination from './Pagination';
 
 const test_items = [
